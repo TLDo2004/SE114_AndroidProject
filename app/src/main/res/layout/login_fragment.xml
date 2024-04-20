@@ -2,13 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.Login.LoginFragment">
 <!--    android:paddingLeft="@dimen/fragment_horizontal_margin"-->
 <!--    android:paddingTop="@dimen/fragment_vertical_margin"-->
 <!--    android:paddingRight="@dimen/fragment_horizontal_margin"-->
 <!--    android:paddingBottom="@dimen/fragment_vertical_margin"-->
 <!--    android:background="@drawable/auth_background"-->
-<!--    tools:context=".view.login.LoginFragment"-->
+<!--    -->
+
+<!--    <TextView-->
+<!--        android:id="@+id/bla"-->
+<!--        android:layout_width="20px"-->
+<!--        android:layout_height="20px"-->
+
+<!--        >-->
+
+<!--    </TextView>-->
 
     <LinearLayout
         android:id="@+id/txt_login_title"
@@ -77,7 +87,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/lable_option_register"
@@ -111,7 +121,7 @@
             android:textStyle="bold"/>
 
         <LinearLayout
-            android:id="@+id/txt_btn_option_register"
+            android:id="@+id/btn_reg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true">

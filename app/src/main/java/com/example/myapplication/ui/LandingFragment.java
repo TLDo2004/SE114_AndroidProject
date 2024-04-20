@@ -12,24 +12,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.FragmentLandingBinding;
+import com.example.myapplication.databinding.LandingFragmentBinding;
 import com.example.myapplication.ui.Login.LoginFragment;
 import com.example.myapplication.ui.Register.RegisterFragment;
 
 public class LandingFragment extends Fragment {
-    private FragmentLandingBinding binding;
+    private LandingFragmentBinding binding;
     private Button landingLoginBtn;
     private LinearLayout landingRegisterTxtBtn;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentLandingBinding.inflate(inflater, container, false);
+        binding = LandingFragmentBinding.inflate(inflater, container, false);
         initiate(binding);
 
         landingLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Fragment loginFragment = new LoginFragment();
                 replaceFragment(loginFragment);
 
@@ -52,7 +53,7 @@ public class LandingFragment extends Fragment {
         super.onDestroyView();
     }
 
-    private void initiate(FragmentLandingBinding binding) {
+    private void initiate(LandingFragmentBinding binding) {
         landingLoginBtn = binding.btnLandingLogin;
         landingRegisterTxtBtn = binding.txtBtnLandingRegister;
     }

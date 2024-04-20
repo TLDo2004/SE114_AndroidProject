@@ -10,17 +10,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.databinding.ActivityLandingBinding;
+import com.example.myapplication.databinding.LandingActivityBinding;
 import com.example.myapplication.local.LocalStorage;
 
 public class LandingActivity extends AppCompatActivity {
    private SharedPreferences sharedPreferences;
-    private ActivityLandingBinding binding;
+   private LandingActivityBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLandingBinding.inflate(getLayoutInflater());
+        binding = LandingActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         sharedPreferences = LocalStorage.getInstance(this);
