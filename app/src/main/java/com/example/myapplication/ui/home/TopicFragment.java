@@ -34,7 +34,6 @@ public class TopicFragment extends Fragment {
             @Override
             public void onChanged(WordModel word) {
                 home.setText(word.word);
-
             }
         });
         String word = "SECOND";

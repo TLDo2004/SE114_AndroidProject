@@ -19,7 +19,6 @@ import java.util.List;
 
 public class QuizFragment extends Fragment {
     private QuizFragmentBinding binding;
-
     private QuizRepo quizRepo;
     private TextView quizs;
 
@@ -28,6 +27,7 @@ public class QuizFragment extends Fragment {
         initiate(binding);
 
         // GET ALL QUIZ
+        quizRepo = new QuizRepo(); // Initialize the quizRepo object
         quizRepo.getQuizById("662390c2055571708f9dfd61").observe(getViewLifecycleOwner(), new Observer<QuizModel>() {
             @Override
             public void onChanged(QuizModel quizModels) {
