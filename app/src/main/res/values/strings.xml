@@ -1,6 +1,35 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_slo">Success is a journey not a destination</string>
+    <string name="status_waiting">Please wait…</string>
+
+    <!-- screen name-->
+    <string name="topic">Topic</string>
+    <string name="quiz">Quiz</string>
+    <string name="revision">Revision</string>
+
+    <!-- Auth -->
+    <string name="log_til">"Welcome back"</string>
+    <string name="log_des">Login to your account</string>
+    <string name="log_remember">Remember Me</string>
+    <string name="log_other">or continue with</string>
+    <string name="log_opt">Don\'t have account?</string>
+
+    <!-- Register -->
+    <string name="reg">Register</string>
+    <string name="reg_til">Get started</string>
+    <string name="reg_des">By create an account</string>
+    <string name="reg_opt">Already a member?</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="confirm_pass">Confirm password</string>
+    <string name="forgot_pass">Forgot password ?</string>
+    <string name="str_done">Done</string>
+
+    <!-- Validate -->
+    <string name="val_name">Not a valid username</string>
+    <string name="val_pass">Password must be >5 characters</string>
+    <string name="val_log">"Login failed"</string>
+
 </resources>
