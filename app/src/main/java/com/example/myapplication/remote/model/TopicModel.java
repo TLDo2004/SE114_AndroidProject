@@ -10,5 +10,5 @@ public class TopicModel {
     @SerializedName("des")
     public String des;
     @SerializedName("prog")
-    public String prog;
+    public int prog;
 }
