@@ -39,6 +39,7 @@ public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecVi
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Push to another Fragmnent (SCREEN)
                 Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
