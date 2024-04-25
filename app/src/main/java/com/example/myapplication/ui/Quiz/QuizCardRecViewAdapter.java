@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.Quiz;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,15 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     @Override
     public void onBindViewHolder(@NonNull QuizCardRecViewAdapter.QuizCardViewHolder holder, int position) {
         QuizModel item =  quizs.get(position);
-        holder.type.setText(item.type);
+        holder.name.setText(item.name);
 //      holder.point.setText(item.point);
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (position == 0){
+                    Intent intent = new Intent(context, GuessFragment.class);
+                    context.startActivity(intent);
+                }
                 Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
@@ -58,11 +63,12 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     }
 
     public static class QuizCardViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout card;
-        private TextView type, point, timer;
+        RelativeLayout card;
+        private TextView type, point, timer, name;
         public QuizCardViewHolder(@Nullable View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card_quiz);
+            name = itemView.findViewById(R.id.txt_name);
             type = itemView.findViewById(R.id.txt_type);
             point = itemView.findViewById(R.id.txt_point);
             timer = itemView.findViewById(R.id.txt_timer);
