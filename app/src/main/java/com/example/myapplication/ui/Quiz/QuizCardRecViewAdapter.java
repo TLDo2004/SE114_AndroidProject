@@ -1,19 +1,19 @@
 package com.example.myapplication.ui.Quiz;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.remote.model.QuizModel;
-import com.example.myapplication.remote.model.QuizModel;
-import com.example.myapplication.ui.Quiz.QuizCardRecViewAdapter;
+import com.example.myapplication.ui.Quiz.Guess.GuessBasicFragment;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
@@ -37,18 +37,18 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuizCardRecViewAdapter.QuizCardViewHolder holder, int position) {
-        QuizModel item =  quizs.get(position);
+    public void onBindViewHolder(@NonNull QuizCardRecViewAdapter.QuizCardViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        QuizModel item =  quizs.get(position); // get position
         holder.name.setText(item.name);
-//      holder.point.setText(item.point);
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position == 0){
-                    Intent intent = new Intent(context, GuessFragment.class);
-                    context.startActivity(intent);
-                }
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+           GuessBasicFragment guessFragment = new GuessBasicFragment();
+               Bundle bundle = new Bundle();
+               bundle.putString("quizId", item.id);
+               guessFragment.setArguments(bundle);
+               Navigation.createNavigateOnClickListener(R.id.navigation_guess, bundle).onClick(holder.itemView);
+               Toast.makeText(context, item.id, Toast.LENGTH_SHORT).show();
             }
         });
     }

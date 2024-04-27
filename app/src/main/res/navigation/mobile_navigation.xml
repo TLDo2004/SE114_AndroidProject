@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_topic"
         android:name="com.example.myapplication.ui.Topic.TopicFragment"
-        android:label="@string/topic"
+        android:label="Topic"
         tools:layout="@layout/topic_fragment" />
 
     <fragment

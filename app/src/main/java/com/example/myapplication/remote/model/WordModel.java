@@ -32,4 +32,8 @@ public class WordModel {
     ) {
         this.word = word;
     }
+
+    public String getDef() {
+        return def;
+    }
 }

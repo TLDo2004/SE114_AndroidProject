@@ -28,6 +28,7 @@ public class QuizFragment extends Fragment {
         binding = QuizFragmentBinding.inflate(inflater, container, false);
         initiate(binding);
         setupRecyclerView(binding);
+
         quizRepo.getQuiz().observe(getViewLifecycleOwner(), new Observer<List<QuizModel>>() {
             @Override
             public void onChanged(List<QuizModel> quizs) {

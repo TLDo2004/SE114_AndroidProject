@@ -2,6 +2,8 @@ package com.example.myapplication.remote.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class QuizModel {
     @SerializedName("_id")
     public String id;
@@ -15,7 +17,10 @@ public class QuizModel {
     @SerializedName("timer")
     public int timer;
 
-    public String getId() {
+    @SerializedName("words")
+    public List<String> wordList;
+
+    public String getId(int position) {
         return id;
     }
 }
