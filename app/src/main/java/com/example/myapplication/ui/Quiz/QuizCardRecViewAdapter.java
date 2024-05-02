@@ -1,18 +1,19 @@
 package com.example.myapplication.ui.Quiz;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.remote.model.QuizModel;
-import com.example.myapplication.remote.model.QuizModel;
-import com.example.myapplication.ui.Quiz.QuizCardRecViewAdapter;
+import com.example.myapplication.ui.Quiz.Guess.GuessBasicFragment;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
@@ -36,14 +37,18 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuizCardRecViewAdapter.QuizCardViewHolder holder, int position) {
-        QuizModel item =  quizs.get(position);
-        holder.type.setText(item.type);
-//      holder.point.setText(item.point);
+    public void onBindViewHolder(@NonNull QuizCardRecViewAdapter.QuizCardViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        QuizModel item =  quizs.get(position); // get position
+        holder.name.setText(item.name);
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+           GuessBasicFragment guessFragment = new GuessBasicFragment();
+               Bundle bundle = new Bundle();
+               bundle.putString("quizId", item.id);
+               guessFragment.setArguments(bundle);
+               Navigation.createNavigateOnClickListener(R.id.navigation_guess, bundle).onClick(holder.itemView);
+               Toast.makeText(context, item.id, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -58,11 +63,12 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     }
 
     public static class QuizCardViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout card;
-        private TextView type, point, timer;
+        RelativeLayout card;
+        private TextView type, point, timer, name;
         public QuizCardViewHolder(@Nullable View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card_quiz);
+            name = itemView.findViewById(R.id.txt_name);
             type = itemView.findViewById(R.id.txt_type);
             point = itemView.findViewById(R.id.txt_point);
             timer = itemView.findViewById(R.id.txt_timer);
