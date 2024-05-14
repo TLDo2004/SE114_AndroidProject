@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.remote.model.QuizModel;
-import com.example.myapplication.ui.Quiz.Guess.GuessBasicFragment;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
@@ -24,10 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecViewAdapter.QuizCardViewHolder> {
-
     private Context context;
-    private List<QuizModel> quizs = new ArrayList<>();
-    public QuizCardRecViewAdapter(Context context){this.context = context;};
+    private List<QuizModel> quizzes = new ArrayList<>();
+    private NavController nav;
+
+    public QuizCardRecViewAdapter(Context context, NavController nav){
+        this.context = context;
+        this.nav = nav;
+    };
 
     @NonNull
     @Override
@@ -37,41 +41,35 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuizCardRecViewAdapter.QuizCardViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        QuizModel item =  quizs.get(position); // get position
+    public void onBindViewHolder(@NonNull QuizCardViewHolder holder, int position) {
+        QuizModel item = quizzes.get(position);
+
         holder.name.setText(item.name);
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           GuessBasicFragment guessFragment = new GuessBasicFragment();
-               Bundle bundle = new Bundle();
-               bundle.putString("quizId", item.id);
-               guessFragment.setArguments(bundle);
-               Navigation.createNavigateOnClickListener(R.id.navigation_guess, bundle).onClick(holder.itemView);
-               Toast.makeText(context, item.id, Toast.LENGTH_SHORT).show();
-            }
+        holder.card.setOnClickListener(v -> {
+            nav.navigate(R.id.action_quiz_to_guess, null);
         });
+
     }
+
+
     @SuppressLint("NotifyDataSetChanged")
-    public void setQuizs(List<QuizModel> quizs) {
-        this.quizs = quizs;
+    public void setQuizzes(List<QuizModel> quizzes) {
+        this.quizzes = quizzes;
         notifyDataSetChanged();
     }
     @Override
     public int getItemCount() {
-        return quizs.size();
+        return quizzes.size();
     }
 
     public static class QuizCardViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout card;
-        private TextView type, point, timer, name;
-        public QuizCardViewHolder(@Nullable View itemView) {
+        private RelativeLayout card;
+        private TextView name;
+        public QuizCardViewHolder(@NonNull View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card_quiz);
             name = itemView.findViewById(R.id.txt_name);
-            type = itemView.findViewById(R.id.txt_type);
-            point = itemView.findViewById(R.id.txt_point);
-            timer = itemView.findViewById(R.id.txt_timer);
+
         }
     }
 }
