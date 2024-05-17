@@ -44,12 +44,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //CardStack
-    implementation ("com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6")
-
-    //Jitpack
-//    implementation("com.github.jitpack:android-example:3.0")
-
     //Retrofit library
     implementation ("com.squareup.retrofit2:retrofit:2.1.0")
     implementation ("com.google.code.gson:gson:2.6.2")
