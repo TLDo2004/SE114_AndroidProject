@@ -2,8 +2,6 @@ package com.example.myapplication.ui.Revision;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.remote.model.RevisionModel;
 import com.example.myapplication.remote.model.TopicModel;
 import com.example.myapplication.remote.model.WordModel;
-import com.example.myapplication.remote.repo.WordRepo;
 import com.example.myapplication.ui.Topic.TopicCardRecViewAdapter;
 
 import java.time.format.DateTimeFormatter;
@@ -31,13 +25,7 @@ import java.util.List;
 public class RevisionCardRecViewAdapter extends RecyclerView.Adapter<RevisionCardRecViewAdapter.RevisionCardViewHolder>{
     private Context context;
     private List<RevisionModel> revisions = new ArrayList<>();
-    private WordRepo wordRepo;
-    private LifecycleOwner lifecycleOwner;
     public RevisionCardRecViewAdapter(Context context) {this.context = context;}
-    public RevisionCardRecViewAdapter(Context context, LifecycleOwner lifecycleOwner) {
-        this.context = context;
-        this.lifecycleOwner = lifecycleOwner;
-    }
 
     @NonNull
     @Override
@@ -52,22 +40,17 @@ public class RevisionCardRecViewAdapter extends RecyclerView.Adapter<RevisionCar
         holder.cre_dt.setText(item.cre_dt);
         holder.alarm_dt.setText(item.alarm_dt);
         holder.interval.setText(String.valueOf(item.interval));
-
-        wordRepo = new WordRepo();
-        List<String> wordList = new ArrayList<>();
-        for (int i = 0; i < item.wordIdList.size(); i++) {
-            wordRepo.getWordById(item.wordIdList.get(i)).observe(lifecycleOwner, new Observer<WordModel>() {
-                @Override
-                public void onChanged(WordModel wordData) {
-                    wordList.add(wordData.word);
-                    if (wordList.size() == item.wordIdList.size()) {
-                        String combinedWords = TextUtils.join("\n", wordList);
-                        holder.words.setText(combinedWords);
-                    }
-                }
-            });
+/*
+        List<String> list = new ArrayList<>();
+        for (WordModel w : item.wordList) {
+            list.add(w.word);
         }
-
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String i : list) {
+            stringBuilder.append(i).append("\n");
+        }
+   //     holder.words.setText(stringBuilder);
+*/
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
