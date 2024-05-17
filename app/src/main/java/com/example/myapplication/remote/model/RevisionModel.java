@@ -14,6 +14,6 @@ public class RevisionModel {
     public String alarm_dt;
     @SerializedName("interval")
     public int interval;
-//    @SerializedName("words")
-//    public List<WordModel> wordList;
+    @SerializedName("words")
+    public List<String> wordIdList;
 }

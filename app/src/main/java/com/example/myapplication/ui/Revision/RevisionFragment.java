@@ -50,7 +50,7 @@ public class RevisionFragment extends Fragment {
 
     private void initiate(RevisionFragmentBinding binding) {
         revisionRepo = new RevisionRepo();
-        revisionCardAdapter = new RevisionCardRecViewAdapter(getContext());
+        revisionCardAdapter = new RevisionCardRecViewAdapter(getContext(), this);
     }
 
     private void setupRecyclerView(RevisionFragmentBinding binding) {
