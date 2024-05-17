@@ -20,7 +20,7 @@ public class QuizModel {
     @SerializedName("words")
     public List<String> wordList;
 
-    public String getId(int position) {
-        return id;
+    public List<String> getWordList() {
+        return wordList;
     }
 }

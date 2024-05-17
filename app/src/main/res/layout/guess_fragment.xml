@@ -6,11 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.Quiz.Guess.GuessFragment">
 
-    <TextView
-        android:id="@+id/mock_id"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_centerInParent="true"
-        android:text="THIS IS A TEST" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/guessRecView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

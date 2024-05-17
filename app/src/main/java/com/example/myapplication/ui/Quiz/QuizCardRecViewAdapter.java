@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.remote.model.QuizModel;
+import com.example.myapplication.ui.Quiz.Guess.GuessFragment;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
@@ -46,7 +47,12 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
 
         holder.name.setText(item.name);
         holder.card.setOnClickListener(v -> {
-            nav.navigate(R.id.action_quiz_to_guess, null);
+            GuessFragment guessFragment = new GuessFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("quizId", item.id);
+            guessFragment.setArguments(bundle);
+            Toast.makeText(context, item.id,Toast.LENGTH_SHORT).show();
+            nav.navigate(R.id.action_quiz_to_guess, bundle);
         });
 
     }
@@ -69,7 +75,6 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
             super(itemView);
             card = itemView.findViewById(R.id.card_quiz);
             name = itemView.findViewById(R.id.txt_name);
-
         }
     }
 }
