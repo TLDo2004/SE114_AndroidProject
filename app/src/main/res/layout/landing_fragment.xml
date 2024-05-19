@@ -12,7 +12,7 @@
         android:layout_alignParentLeft="true"
         android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
-        android:src="@color/cardview_dark_background"/>
+        android:src="@color/stroke"/>
 
     <TextView
         android:id="@+id/txt_landing_title"
@@ -22,37 +22,30 @@
         android:layout_marginTop="100dp"
         android:paddingHorizontal="30dp"
         android:textColor="@color/white"
-        android:textSize="62dp"
-        android:text="Welcome"
-        android:fontFamily="@font/reddit_sans_extrabold"/>
+        android:textSize="30dp"
+        android:text="Self-education is the only kind of education there is."
+        android:fontFamily="@font/reddit_sans_black"/>
+
+    <ImageView
+        android:id="@+id/img_landing_background2"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_below="@+id/txt_landing_title"
+        android:layout_marginTop="12dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/png_landing" />
 
     <Button
         android:id="@+id/btn_landing_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="80dp"
-        android:text="Login"
-        android:textColor="@color/white"
-        android:background="@drawable/custom_btn2"
-        android:layout_above="@+id/txt_btn_landing_register"/>
-
-
-    <LinearLayout
-        android:id="@+id/txt_btn_landing_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="90dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="200dp"
-        android:layout_marginTop="20dp"
-        android:clickable="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SignUp"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:text="Get started"
+        android:fontFamily="@font/reddit_sans_extrabold"
+        android:textColor="@color/stroke"
+        android:background="@drawable/custom_btn3"/>
+
 </RelativeLayout>

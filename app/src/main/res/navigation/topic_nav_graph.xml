@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/swipeFragment"
         android:name="com.example.myapplication.ui.Topic.Swipe.SwipeFragment"
-        android:label="Guess Fragment"
+        android:label="Swipe Fragment"
         tools:layout="@layout/swipe_fragment">
         <action
             android:id="@+id/action_swipe_to_topic"

@@ -4,24 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <com.wenchao.cardstack.CardStack-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
-
     <LinearLayout
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:padding="13dp"
+        android:background="@drawable/custom_shape3"
         android:layout_marginRight="20dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/png_back_btn"/>
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/png_back_btn4"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="THIS IS SWIPE SCREEN"/>
+
+    <com.wenchao.cardstack.CardStack
+        android:id="@+id/swipe_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

@@ -37,13 +37,13 @@ public class LandingFragment extends Fragment {
             }
         });
 
-        landingRegisterTxtBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment registerFragment = new RegisterFragment();
-                replaceFragment(registerFragment);
-            }
-        });
+//        landingRegisterTxtBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Fragment registerFragment = new RegisterFragment();
+//                replaceFragment(registerFragment);
+//            }
+//        });
 
         return binding.getRoot();
     }
@@ -55,7 +55,7 @@ public class LandingFragment extends Fragment {
 
     private void initiate(LandingFragmentBinding binding) {
         landingLoginBtn = binding.btnLandingLogin;
-        landingRegisterTxtBtn = binding.txtBtnLandingRegister;
+//        landingRegisterTxtBtn = binding.txtBtnLandingRegister;
     }
 
     public void replaceFragment(Fragment fragment) {

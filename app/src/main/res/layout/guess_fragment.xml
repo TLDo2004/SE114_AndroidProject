@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.Quiz.Guess.GuessFragment">
 
-    <TextView
-        android:id="@+id/mock_id"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_centerInParent="true"
-        android:text="THIS IS A TEST" />
+    <LinearLayout
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:padding="13dp"
+        android:background="@drawable/custom_shape3"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/png_back_btn4"/>
+    </LinearLayout>
 
 </RelativeLayout>
