@@ -4,60 +4,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Login.LoginFragment">
-<!--    android:paddingLeft="@dimen/fragment_horizontal_margin"-->
-<!--    android:paddingTop="@dimen/fragment_vertical_margin"-->
-<!--    android:paddingRight="@dimen/fragment_horizontal_margin"-->
-<!--    android:paddingBottom="@dimen/fragment_vertical_margin"-->
-<!--    android:background="@drawable/auth_background"-->
-<!--    -->
-
-<!--    <TextView-->
-<!--        android:id="@+id/bla"-->
-<!--        android:layout_width="20px"-->
-<!--        android:layout_height="20px"-->
-
-<!--        >-->
-
-<!--    </TextView>-->
 
     <LinearLayout
         android:id="@+id/txt_login_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="50dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:layout_alignParentTop="true"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Login"
-            android:textColor="@color/black"
-            android:textSize="40sp"
-            android:textStyle="bold"/>
+            android:text="Welcome"
+            android:textColor="@color/headline"
+            android:textSize="50sp"
+            android:fontFamily="@font/reddit_sans_extrabold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="This is login screen"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:text="Login to continue"
+            android:textColor="@color/headline"
+            android:textSize="25sp"
+            android:fontFamily="@font/reddit_sans_medium"/>
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/background"
+        android:layout_below="@+id/txt_login_title"
+        android:layout_width="380dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/jpg_background1"
+        />
+
     <LinearLayout
+        android:id="@+id/edit_group"
+        android:layout_below="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_login_title"
+        android:layout_marginTop="40dp"
         android:orientation="vertical">
         <EditText
             android:id="@+id/edit_login_username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
             android:drawablePadding="15dp"
             android:hint="User name"
             android:inputType="textEmailAddress"
@@ -65,16 +60,16 @@
             android:selectAllOnFocus="true"
             android:padding="13dp"
             android:textSize="18sp"
-            android:background="@color/cardview_light_background"/>
-<!--        android:drawableStart="@drawable/auth_ic_email"-->
+            android:fontFamily="@font/reddit_sans_medium"
+            android:background="@drawable/custom_edit_text"/>
 
         <EditText
             android:id="@+id/edit_login_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="50dp"
             android:layout_marginTop="15dp"
             android:drawablePadding="15dp"
+            android:layout_marginHorizontal="10dp"
             android:hint="Password"
             android:importantForAutofill="no"
             android:selectAllOnFocus="true"
@@ -82,58 +77,36 @@
             android:inputType="textPassword"
             android:padding="13dp"
             android:textSize="18sp"
-            android:background="@color/cardview_light_background"/>
-<!--        android:drawableStart="@drawable/auth_ic_lock"-->
+            android:fontFamily="@font/reddit_sans_medium"
+            android:background="@drawable/custom_edit_text"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_log"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/lable_option_register"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btn_register"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="20dp"
         android:enabled="true"
         android:text="Login"
         android:textSize="18sp"
-        android:backgroundTint="#4b784e"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true" />
-<!--    android:background="@drawable/custom_button_rounded"-->
+        android:fontFamily="@font/reddit_sans_regular"
+        android:background="@drawable/custom_btn1"
+        android:textColor="@color/card_background" />
 
-    <LinearLayout
-        android:id="@+id/lable_option_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Don't have an account "
-            android:layout_marginRight="10dp"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="30dp"
+        android:enabled="true"
+        android:text="Create account"
+        android:textSize="18sp"
+        android:fontFamily="@font/reddit_sans_regular"
+        android:background="@drawable/custom_btn2"
+        android:textColor="@color/headline"/>
 
-        <LinearLayout
-            android:id="@+id/btn_reg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Register"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
 </RelativeLayout>

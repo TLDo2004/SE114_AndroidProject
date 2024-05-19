@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -25,7 +26,13 @@ import java.util.List;
 public class RevisionCardRecViewAdapter extends RecyclerView.Adapter<RevisionCardRecViewAdapter.RevisionCardViewHolder>{
     private Context context;
     private List<RevisionModel> revisions = new ArrayList<>();
-    public RevisionCardRecViewAdapter(Context context) {this.context = context;}
+    private NavController nav;
+    public RevisionCardRecViewAdapter(Context context
+                                      //,NavController nav
+    ) {
+        this.context = context;
+        //this.nav = n
+    }
 
     @NonNull
     @Override
@@ -40,24 +47,7 @@ public class RevisionCardRecViewAdapter extends RecyclerView.Adapter<RevisionCar
         holder.cre_dt.setText(item.cre_dt);
         holder.alarm_dt.setText(item.alarm_dt);
         holder.interval.setText(String.valueOf(item.interval));
-/*
-        List<String> list = new ArrayList<>();
-        for (WordModel w : item.wordList) {
-            list.add(w.word);
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String i : list) {
-            stringBuilder.append(i).append("\n");
-        }
-   //     holder.words.setText(stringBuilder);
-*/
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Push to another Fragmnent (SCREEN)
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     @SuppressLint("NotifyDataSetChanged")

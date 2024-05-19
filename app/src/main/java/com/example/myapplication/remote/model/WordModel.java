@@ -21,19 +21,4 @@ public class WordModel {
     @SerializedName("hint")
     public String hint;
 
-    public WordModel(
-            String word
-//            String pos,
-//            String def,
-//            String img,
-//            String audio,
-//           String pronun,
-//           String hint
-    ) {
-        this.word = word;
-    }
-
-    public String getDef() {
-        return def;
-    }
 }

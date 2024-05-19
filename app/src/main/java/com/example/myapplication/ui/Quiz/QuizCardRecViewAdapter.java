@@ -45,12 +45,13 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
         QuizModel item = quizzes.get(position);
 
         holder.name.setText(item.name);
+        holder.des.setText(item.des);
+        holder.ponit.setText(String.valueOf(item.point));
         holder.card.setOnClickListener(v -> {
             nav.navigate(R.id.action_quiz_to_guess, null);
         });
 
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     public void setQuizzes(List<QuizModel> quizzes) {
@@ -64,11 +65,13 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
 
     public static class QuizCardViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout card;
-        private TextView name;
+        private TextView name, des, ponit;
         public QuizCardViewHolder(@NonNull View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card_quiz);
             name = itemView.findViewById(R.id.txt_name);
+            des = itemView.findViewById(R.id.txt_des);
+            ponit = itemView.findViewById(R.id.txt_point);
 
         }
     }

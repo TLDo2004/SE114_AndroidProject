@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/topic_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/topic_nav_graph"
+    app:startDestination="@+id/topicFragment">
 
+    <fragment
+        android:id="@+id/topicFragment"
+        android:name="com.example.myapplication.ui.Topic.TopicFragment"
+        android:label="Topic Fragment"
+        tools:layout="@layout/topic_fragment">
+        <action
+            android:id="@+id/action_topic_to_swipe"
+            app:destination="@id/swipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/swipeFragment"
+        android:name="com.example.myapplication.ui.Topic.Swipe.SwipeFragment"
+        android:label="Guess Fragment"
+        tools:layout="@layout/swipe_fragment">
+        <action
+            android:id="@+id/action_swipe_to_topic"
+            app:destination="@id/topicFragment" />
+    </fragment>
 </navigation>

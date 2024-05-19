@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -21,7 +23,11 @@ import java.util.List;
 public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecViewAdapter.TopicCardViewHolder>{
     private Context context;
     private List<TopicModel> topics = new ArrayList<>();
-    public TopicCardRecViewAdapter(Context context) {this.context = context;}
+    private NavController nav;
+    public TopicCardRecViewAdapter(Context context,NavController nav) {
+        this.context = context;
+        this.nav = nav;
+    }
 
     @NonNull
     @Override
@@ -36,12 +42,9 @@ public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecVi
         holder.name.setText(item.name);
         holder.des.setText(item.des);
         //holder.prog.setText(item.prog);
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Push to another Fragmnent (SCREEN)
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-            }
+
+        holder.card.setOnClickListener(v -> {
+            nav.navigate(R.id.action_topic_to_swipe, null);
         });
 
     }

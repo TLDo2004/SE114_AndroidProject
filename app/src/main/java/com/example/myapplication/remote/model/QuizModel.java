@@ -7,20 +7,16 @@ import java.util.List;
 public class QuizModel {
     @SerializedName("_id")
     public String id;
-
     @SerializedName("name")
     public String name;
+    @SerializedName("des")
+    public String des;
     @SerializedName("type")
     public String type;
     @SerializedName("point")
     public int point;
     @SerializedName("timer")
     public int timer;
-
     @SerializedName("words")
-    public List<String> wordList;
-
-    public String getId(int position) {
-        return id;
-    }
+    public List<WordModel> wordList;
 }

@@ -22,9 +22,9 @@
         android:layout_marginTop="100dp"
         android:paddingHorizontal="30dp"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="62dp"
-        android:text="Welcome"/>
+        android:text="Welcome"
+        android:fontFamily="@font/reddit_sans_extrabold"/>
 
     <Button
         android:id="@+id/btn_landing_login"
@@ -34,9 +34,8 @@
         android:layout_marginHorizontal="80dp"
         android:text="Login"
         android:textColor="@color/white"
-
+        android:background="@drawable/custom_btn2"
         android:layout_above="@+id/txt_btn_landing_register"/>
-<!--    android:background="@drawable/custom_button_rounded_faded"-->
 
 
     <LinearLayout

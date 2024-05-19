@@ -9,6 +9,7 @@
     <string name="topic">Topic</string>
     <string name="quiz">Quiz</string>
     <string name="revision">Revision</string>
+    <string name="profile">Profile</string>
 
     <!-- Auth -->
     <string name="log_til">"Welcome back"</string>

@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,37 +28,37 @@ public class TopicFragment extends Fragment {
     private TopicRepo topicRepo;
     private TopicCardRecViewAdapter topicCardAdapter;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = TopicFragmentBinding.inflate(inflater, container, false);
         initiate(binding);
+
+        NavController navController = Navigation.findNavController(container);
+
+        topicCardAdapter = new TopicCardRecViewAdapter(getContext(), navController);
+        topicRepo.getTopic().observe(getViewLifecycleOwner(), topics -> topicCardAdapter.setTopics(topics));
+
         setupRecyclerView(binding);
-
-        topicRepo.getTopic().observe(getViewLifecycleOwner(), new Observer<List<TopicModel>>() {
-            @Override
-            public void onChanged(List<TopicModel> topics) {
-                topicCardAdapter.setTopics(topics);
-            }
-        });
-
 
         return binding.getRoot();
     }
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //TopicRepo topicRepo = new TopicRepo();
+        //topicRepo.getTopic().observe(getViewLifecycleOwner(), topics -> topicCardAdapter.setTopics(topics));
+
     }
 
     private void initiate(TopicFragmentBinding binding) {
         topicRepo = new TopicRepo();
-        topicCardAdapter = new TopicCardRecViewAdapter(getContext());
     }
+
     private void setupRecyclerView(TopicFragmentBinding binding) {
         RecyclerView rec = binding.topicRecView;
         rec.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         rec.setAdapter(topicCardAdapter);
-
         rec.setHasFixedSize(true);
     }
 }

@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#d4d8f0</color>
+    <color name="card_background">#fffffe</color>
+    <color name="card_heading">#232946</color>
+    <color name="card_paragraph">#232946</color>
+    <color name="headline">#232946</color>
+    <color name="sub_headline">#232946</color>
+    <color name="button">#eebbc3</color>
+    <color name="paragraph">#b8c1ec</color>
+    <color name="button_text">#232946</color>
+    <color name="stroke">#121629</color>
+    <color name="main">#b8c1ec</color>
+    <color name="highlight">#eebbc3</color>
+    <color name="secondary">#fffffe</color>
+    <color name="tertiary">#eebbc3</color>
+
 </resources>

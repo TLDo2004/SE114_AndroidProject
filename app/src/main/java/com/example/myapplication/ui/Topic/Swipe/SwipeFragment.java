@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.Topic.FlashCard;
+package com.example.myapplication.ui.Topic.Swipe;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,18 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.databinding.TopicExampleBinding;
+import com.example.myapplication.databinding.SwipeFragmentBinding;
 
-public class FlashCard extends Fragment {
-    private TopicExampleBinding binding;
+public class SwipeFragment extends Fragment {
+    private SwipeFragmentBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = TopicExampleBinding.inflate(inflater, container, false);
+        binding = SwipeFragmentBinding.inflate(inflater, container, false);
 
 
 
         return binding.getRoot();
     }
+
+    private void initiate(SwipeFragmentBinding binding) {
+
+    }
+
 }

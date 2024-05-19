@@ -21,6 +21,7 @@ public class QuizNavHostFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = QuizNavHostFragmentBinding.inflate(getLayoutInflater());
+
     }
 
     @Nullable
