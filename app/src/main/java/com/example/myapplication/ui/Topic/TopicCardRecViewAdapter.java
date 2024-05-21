@@ -2,6 +2,7 @@ package com.example.myapplication.ui.Topic;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import java.util.List;
 public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecViewAdapter.TopicCardViewHolder>{
     private Context context;
     private List<TopicModel> topics = new ArrayList<>();
+    Bundle bundle = new Bundle();
     private NavController nav;
     public TopicCardRecViewAdapter(Context context,NavController nav) {
         this.context = context;
@@ -42,9 +44,9 @@ public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecVi
         holder.name.setText(item.name);
         holder.des.setText(item.des);
         //holder.prog.setText(item.prog);
-
+        bundle.putString("topicId", item.id);
         holder.card.setOnClickListener(v -> {
-            nav.navigate(R.id.action_topic_to_swipe, null);
+            nav.navigate(R.id.action_topic_to_swipe, bundle);
         });
 
     }

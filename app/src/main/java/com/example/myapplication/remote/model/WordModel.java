@@ -16,8 +16,8 @@ public class WordModel {
     public String img;
     @SerializedName("audio")
     public String audio;
-    @SerializedName("pronun")
-    public String pronun;
+    @SerializedName("pronoun")
+    public String pronoun;
     @SerializedName("hint")
     public String hint;
 
