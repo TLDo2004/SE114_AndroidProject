@@ -16,22 +16,19 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface QuizService {
-    @POST("api/quizzes")
-    Call<QuizModel> createQuiz(@Body QuizModel quiz);
+//    @POST("api/quizzes")
+//    Call<QuizModel> createQuiz(@Body QuizModel quiz);
     @GET("api/quizzes")
     Call<List<QuizModel>> getQuiz();
     @GET("api/quizzes/{id}")
     Call<QuizModel> getQuizById(@Path("id") String id);
-    @FormUrlEncoded
-    @PATCH("api/quizzes/{id}")
-    Call<QuizModel> updateQuiz(
-            @Path("id") String id,
-            @Body QuizModel quiz
-//            @Field("type") String type,
-//            @Field("point") int point,
-//            @Field("timer") int timer
 
-    );
-    @DELETE("api/words/{id}")
-    Call<QuizModel> deleteQuiz(@Path("id") String id);
+//    @FormUrlEncoded
+//    @PATCH("api/quizzes/{id}")
+//    Call<QuizModel> updateQuiz(
+//            @Path("id") String id,
+//            @Body QuizModel quiz
+//    );
+//    @DELETE("api/words/{id}")
+//    Call<QuizModel> deleteQuiz(@Path("id") String id);
 }

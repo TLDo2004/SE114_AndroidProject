@@ -20,5 +20,7 @@ public class WordModel {
     public String pronoun;
     @SerializedName("hint")
     public String hint;
+    @SerializedName("blankSen")
+    public String blankSen;
 
 }

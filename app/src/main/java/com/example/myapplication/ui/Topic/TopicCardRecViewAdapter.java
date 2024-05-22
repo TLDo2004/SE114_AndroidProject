@@ -24,7 +24,6 @@ import java.util.List;
 public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecViewAdapter.TopicCardViewHolder>{
     private Context context;
     private List<TopicModel> topics = new ArrayList<>();
-    Bundle bundle = new Bundle();
     private NavController nav;
     public TopicCardRecViewAdapter(Context context,NavController nav) {
         this.context = context;
@@ -41,10 +40,13 @@ public class TopicCardRecViewAdapter extends RecyclerView.Adapter<TopicCardRecVi
     @Override
     public void onBindViewHolder(@NonNull TopicCardViewHolder holder, int position) {
         TopicModel item =  topics.get(position);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("topicId", item.id);
+
         holder.name.setText(item.name);
         holder.des.setText(item.des);
         //holder.prog.setText(item.prog);
-        bundle.putString("topicId", item.id);
         holder.card.setOnClickListener(v -> {
             nav.navigate(R.id.action_topic_to_swipe, bundle);
         });

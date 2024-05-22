@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.app.AlertDialog;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,11 +30,20 @@ import java.util.List;
 public class GuessFragment extends Fragment {
     private GuessFragmentBinding binding;
     private QuizRepo quizRepo;
+    private NavController navController;
+    private TextView txtTopic;
     private LinearLayout btnBack, btnNext, btnOptA, btnOptB, btnOptC, btnOptD;
     private TextView txtQuizContent, txtOptA, txtOptB, txtOptC, txtOptD;
     private List<WordModel> quizContent = new ArrayList<>();
     private int currentQuizIndex = 0;
-    private NavController navController;
+    private int correctCounter = 0;
+    private String quizType = null;
+
+    // Finish dialog
+    private TextView txtResTitle, txtResProg, txtCorrect, txtOverall;
+    private CircularProgressIndicator indicatorResProg;
+
+
 
     @Nullable
     @Override
@@ -42,7 +51,14 @@ public class GuessFragment extends Fragment {
         binding = GuessFragmentBinding.inflate(inflater, container, false);
         initiate(binding);
 
-        quizRepo.getQuizById("6625e7201b9f1c8699f737f5").observe(getViewLifecycleOwner(), quiz -> {
+        Bundle args = getArguments();
+        String quizId = null;
+        if (args != null) {
+            quizId = args.getString("quizId");
+        }
+        quizRepo.getQuizById(quizId).observe(getViewLifecycleOwner(), quiz -> {
+            txtTopic.setText(quiz.name);
+            quizType = quiz.type;
             quizContent.addAll(quiz.wordList);
             if (!quizContent.isEmpty()) {
                 showNextQuiz();
@@ -62,7 +78,7 @@ public class GuessFragment extends Fragment {
                 resetBtn();
                 btnNext.setVisibility(View.INVISIBLE);
             } else {
-                finishQuiz(navController);
+                showFinishQuizDialog(navController);
             }
         });
 
@@ -71,6 +87,7 @@ public class GuessFragment extends Fragment {
 
     private void initiate(GuessFragmentBinding binding) {
         quizRepo = new QuizRepo();
+        txtTopic = binding.txtTopic;
         btnBack = binding.btnBack;
         btnNext = binding.btnNext;
         btnOptA = binding.btnOptA;
@@ -85,8 +102,23 @@ public class GuessFragment extends Fragment {
     }
 
     private void showNextQuiz() {
-        txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
-
+        switch (quizType){
+            case "guess":
+                txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
+                break;
+            case "fill":
+                txtQuizContent.setText(quizContent.get(currentQuizIndex).blankSen);
+                break;
+            case "compound":
+                txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
+                break;
+            case "sound":
+                txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
+                break;
+            default:
+                txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
+                break;
+        }
         List<String> opts = new ArrayList<>();
         opts.add(quizContent.get(currentQuizIndex).word);
 
@@ -116,6 +148,7 @@ public class GuessFragment extends Fragment {
         btnOpt.setOnClickListener(v -> {
             if (txtOpt.getText().toString().equals(correctAnswer)) {
                 btnOpt.setBackgroundResource(R.drawable.custom_shape_correct);
+                correctCounter++;
             } else {
                 btnOpt.setBackgroundResource(R.drawable.custom_shape_wrong);
             }
@@ -140,7 +173,8 @@ public class GuessFragment extends Fragment {
         btnNext.setVisibility(View.VISIBLE);
     }
 
-    private void finishQuiz(NavController navController) {
+
+    private void showFinishQuizDialog(NavController navController) {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.quiz_finish_dialog, null);
 
@@ -154,15 +188,36 @@ public class GuessFragment extends Fragment {
             alertDialog.dismiss();
         });
 
-        TextView scoreTitle = dialogView.findViewById(R.id.score_title);
-        TextView scoreProgressText = dialogView.findViewById(R.id.score_progress_text);
-        CircularProgressIndicator progressIndicator = dialogView.findViewById(R.id.score_progress_indicator);
+         txtResTitle = dialogView.findViewById(R.id.txt_result_title);
+         txtResProg = dialogView.findViewById(R.id.txt_result_progress);
+         txtCorrect = dialogView.findViewById(R.id.txt_correct);
+         txtOverall = dialogView.findViewById(R.id.txt_overrall);
+         indicatorResProg = dialogView.findViewById(R.id.indicator_result_progress);
 
-        scoreTitle.setText("Congrats! You have passed");
-        scoreProgressText.setText("50%");
-        progressIndicator.setProgress(50);
+         //Setup result
+         int overall = quizContent.size();
+         int percentage = (int) (((float) correctCounter / (float) overall) * 100);
 
-        alertDialog.show();
+        txtCorrect.setText(String.valueOf(correctCounter));
+        txtResProg.setText(String.valueOf(percentage) + "%");
+        indicatorResProg.setProgress(percentage);
+
+         if( percentage > 50 ) {
+             txtResTitle.setText("Congrats! You have passed!");
+             txtCorrect.setTextColor(ContextCompat.getColor(requireContext(), R.color.correct));
+             txtOverall.setTextColor(ContextCompat.getColor(requireContext(), R.color.correct));
+             indicatorResProg.setIndicatorColor(ContextCompat.getColor(requireContext(), R.color.correct));
+         }  else  {
+             txtResTitle.setText("Oops! You have failed");
+             txtCorrect.setTextColor(ContextCompat.getColor(requireContext(), R.color.wrong));
+             txtOverall.setTextColor(ContextCompat.getColor(requireContext(), R.color.wrong));
+             indicatorResProg.setIndicatorColor(ContextCompat.getColor(requireContext(), R.color.wrong));
+         }
+
+
+
+
+         alertDialog.show();
     }
 
     private List<String> handleDummyOpt() {
@@ -183,10 +238,8 @@ public class GuessFragment extends Fragment {
                 "enigma",
                 "effervescent"
         };
-
         List<String> dummyOpt = Arrays.asList(words);
         Collections.shuffle(dummyOpt);
-
         return dummyOpt.subList(0, 3);
     }
 }

@@ -23,22 +23,22 @@ public class QuizRepo {
     public QuizRepo() {
         service = ApiClient.getClient().create(QuizService.class);
     }
-    public LiveData<QuizModel> createQuiz(QuizModel quiz) {
-        MutableLiveData<QuizModel> data = new MutableLiveData<>();
-        service.createQuiz(quiz).enqueue(new Callback<QuizModel>() {
-            @Override
-            public void onResponse(Call<QuizModel> call, Response<QuizModel> response) {
-                if (response.isSuccessful()) {data.setValue(response.body());}
-                else  {
-                    Log.e("API", "Failed: " + response.code());}
-            }
-            @Override
-            public void onFailure(Call<QuizModel> call, Throwable t) {
-                Log.e("API", "Failed: " +  t.getMessage());
-            }
-        });
-        return data;
-    }
+//    public LiveData<QuizModel> createQuiz(QuizModel quiz) {
+//        MutableLiveData<QuizModel> data = new MutableLiveData<>();
+//        service.createQuiz(quiz).enqueue(new Callback<QuizModel>() {
+//            @Override
+//            public void onResponse(Call<QuizModel> call, Response<QuizModel> response) {
+//                if (response.isSuccessful()) {data.setValue(response.body());}
+//                else  {
+//                    Log.e("API", "Failed: " + response.code());}
+//            }
+//            @Override
+//            public void onFailure(Call<QuizModel> call, Throwable t) {
+//                Log.e("API", "Failed: " +  t.getMessage());
+//            }
+//        });
+//        return data;
+//    }
     public LiveData<List<QuizModel>> getQuiz() {
         MutableLiveData<List<QuizModel>> result = new MutableLiveData<>();
         service.getQuiz().enqueue(new Callback<List<QuizModel>>() {
@@ -69,41 +69,36 @@ public class QuizRepo {
         });
         return result;
     }
-    public LiveData<QuizModel> updateWord(
-            String id,
-            QuizModel quiz
-//            String type,
-//            int point,
-//            int timer
-    ) {
-        MutableLiveData<QuizModel> data = new MutableLiveData<>();
-        service.updateQuiz(id, quiz).enqueue(new Callback<QuizModel>() {
-            @Override
-            public void onResponse(Call<QuizModel> call, Response<QuizModel> response) {
-                if (response.isSuccessful()) {data.setValue(response.body());}
-                else  {Log.e("API CALL", "Failed: " + response.code());}
-            }
-            @Override
-            public void onFailure(Call<QuizModel> call, Throwable t) {
-                Log.e("API CALL", "Failed: " +  t.getMessage());
-            }
-        });
-        return data;
-    }
-    public LiveData<QuizModel> deleteQuiz(String id) {
-        MutableLiveData<QuizModel> data = new MutableLiveData<>();
-        service.deleteQuiz(id).enqueue(new Callback<QuizModel>() {
-            @Override
-            public void onResponse(Call<QuizModel> call, Response<QuizModel> response) {
-                if (response.isSuccessful()) {data.setValue(response.body());}
-                else  {Log.e("API CALL", "Failed: " + response.code());}
-            }
-            @Override
-            public void onFailure(Call<QuizModel> call, Throwable t) {
-                Log.e("API CALL", "Failed: " +  t.getMessage());
-            }
-        });
-        return data;
-    }
+//    public LiveData<QuizModel> updateQuiz( String id, QuizModel quiz ) {
+//        MutableLiveData<QuizModel> data = new MutableLiveData<>();
+//        service.updateQuiz(id, quiz).enqueue(new Callback<QuizModel>() {
+//            @Override
+//            public void onResponse(Call<QuizModel> call, Response<QuizModel> response) {
+//                if (response.isSuccessful()) {data.setValue(response.body());}
+//                else  {Log.e("API CALL", "Failed: " + response.code());}
+//            }
+//            @Override
+//            public void onFailure(Call<QuizModel> call, Throwable t) {
+//                Log.e("API CALL", "Failed: " +  t.getMessage());
+//            }
+//        });
+//        return data;
+//    }
+
+//    public LiveData<QuizModel> deleteQuiz(String id) {
+//        MutableLiveData<QuizModel> data = new MutableLiveData<>();
+//        service.deleteQuiz(id).enqueue(new Callback<QuizModel>() {
+//            @Override
+//            public void onResponse(Call<QuizModel> call, Response<QuizModel> response) {
+//                if (response.isSuccessful()) {data.setValue(response.body());}
+//                else  {Log.e("API CALL", "Failed: " + response.code());}
+//            }
+//            @Override
+//            public void onFailure(Call<QuizModel> call, Throwable t) {
+//                Log.e("API CALL", "Failed: " +  t.getMessage());
+//            }
+//        });
+//        return data;
+//    }
 
 }
