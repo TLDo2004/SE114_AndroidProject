@@ -78,7 +78,8 @@ public class ApiClient {
         }
     }
 
-
+    // TCH: 172.16.2.120
+    // HOME: 192.168.2.21
     static public Retrofit getClient() {
         OkHttpClient client = getUnsafeOkHttpClient();
 
