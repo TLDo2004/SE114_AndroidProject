@@ -2,6 +2,7 @@ package com.example.myapplication.ui.Quiz;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.remote.model.QuizModel;
 
 import android.content.Context;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,15 +46,34 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
     public void onBindViewHolder(@NonNull QuizCardViewHolder holder, int position) {
         QuizModel item = quizzes.get(position);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("quizId", item.id);
+
         holder.name.setText(item.name);
         holder.des.setText(item.des);
         holder.ponit.setText(String.valueOf(item.point));
+        switch (item.type) {
+            case "guess":
+                holder.imgTitle.setBackgroundResource(R.drawable.png_guess);
+                break;
+            case "fill":
+                holder.imgTitle.setBackgroundResource(R.drawable.png_fill);
+                break;
+            case "compound":
+                holder.imgTitle.setBackgroundResource(R.drawable.png_compound);
+                break;
+            case "sound":
+                holder.imgTitle.setBackgroundResource(R.drawable.png_listen);
+                break;
+            default:
+                holder.imgTitle.setBackgroundResource(R.color.background);
+                break;
+        }
         holder.card.setOnClickListener(v -> {
-            nav.navigate(R.id.action_quiz_to_guess, null);
+            nav.navigate(R.id.action_quiz_to_guess, bundle);
         });
 
     }
-
     @SuppressLint("NotifyDataSetChanged")
     public void setQuizzes(List<QuizModel> quizzes) {
         this.quizzes = quizzes;
@@ -65,14 +86,15 @@ public class QuizCardRecViewAdapter extends RecyclerView.Adapter<QuizCardRecView
 
     public static class QuizCardViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout card;
+        private ImageView imgTitle;
         private TextView name, des, ponit;
         public QuizCardViewHolder(@NonNull View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card_quiz);
+            imgTitle = itemView.findViewById(R.id.img_title);
             name = itemView.findViewById(R.id.txt_name);
             des = itemView.findViewById(R.id.txt_des);
             ponit = itemView.findViewById(R.id.txt_point);
-
         }
     }
 }

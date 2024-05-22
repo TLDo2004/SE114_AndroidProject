@@ -17,7 +17,7 @@
     <color name="highlight">#eebbc3</color>
     <color name="secondary">#fffffe</color>
     <color name="tertiary">#eebbc3</color>
-    <color name = "correct">#abd1c6</color>
+    <color name = "correct">#40a778</color>
     <color name = "wrong">#e16162</color>
 
 </resources>

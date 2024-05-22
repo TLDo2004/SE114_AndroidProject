@@ -29,7 +29,7 @@
         android:fontFamily="@font/reddit_sans_black"
         android:textColor="@color/stroke"
         android:textSize="20sp"
-        android:text="Guess the word"/>
+        android:text="Test"/>
 
     <LinearLayout
         android:id="@+id/quiz_container"

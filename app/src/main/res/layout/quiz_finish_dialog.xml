@@ -4,48 +4,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_shape4"
     android:gravity="center"
-    android:padding="16dp"
-    android:layout_height="wrap_content">
+    android:padding="16dp">
 
     <TextView
+        android:id="@+id/txt_result_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Congrats! You have passed"
+        android:layout_marginBottom="20dp"
+        tools:text="Congrats! You have passed!"
         android:gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/score_title"/>
+        android:fontFamily="@font/reddit_sans_bold"
+        android:textSize="25sp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/score_progress_indicator"
+            android:id="@+id/indicator_result_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            app:trackColor="@color/stroke"
-            tools:progress="3"
+            app:trackColor="@color/background"
+            app:indicatorColor="@color/correct"
+            tools:progress="70"
             app:trackCornerRadius="20dp"
             app:trackThickness="8dp"
             app:indicatorSize="100dp"/>
         <TextView
+            android:id="@+id/txt_result_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             tools:text="50%"
             android:textSize="18sp"
-            android:layout_centerInParent="true"
-            android:textStyle="bold"
-            android:id="@+id/score_progress_text"/>
+            android:fontFamily="@font/reddit_sans_black"/>
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/txt_correct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/reddit_sans_black"
+            android:text="6"
+            android:textColor="@color/correct"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/reddit_sans_medium"
+            android:text=" out of "
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/txt_overrall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/reddit_sans_black"
+            android:text="12"
+            android:textColor="@color/correct"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/reddit_sans_medium"
+            android:text=" quizzes are correct"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_btn3"
-        android:layout_margin="8dp"
+        android:layout_marginTop="20dp"
         android:text="Finish"
         android:fontFamily="@font/reddit_sans_bold" />
 
