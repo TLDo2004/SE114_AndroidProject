@@ -83,7 +83,7 @@ public class ApiClient {
         OkHttpClient client = getUnsafeOkHttpClient();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.2.21:3000/")
+                .baseUrl("http://10.45.15.57:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
