@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,12 +17,19 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.LoginFragmentBinding;
+import com.example.myapplication.remote.model.UserModel;
+import com.example.myapplication.remote.repo.UserRepo;
 import com.example.myapplication.ui.Register.RegisterFragment;
 
 public class LoginFragment extends Fragment {
     private LoginFragmentBinding binding;
     private Intent navToMain;
     private Button btnLogin, btnRegister;
+    private EditText edtUser, edtPass;
+    private TextView txtStatus;
+    private String user = null, pass = null;
+    private UserRepo userRepo;
+    private static boolean check = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,7 +50,27 @@ public class LoginFragment extends Fragment {
 //                replaceFragment(registerFragment);
 //            }
 //        });
-        btnLogin.setOnClickListener(v -> startActivity(navToMain));
+
+        btnLogin.setOnClickListener(v -> {
+            user = edtUser.getText().toString();
+            pass = edtPass.getText().toString();
+
+            if (!user.isEmpty() && !pass.isEmpty()) {
+                userRepo.getUserByName(user).observe(getViewLifecycleOwner(), usr -> {
+                    if(usr != null && pass.equals(usr.pass)) {
+                        txtStatus.setText("");
+                        Toast.makeText(getContext(), "Login successfully!", Toast.LENGTH_SHORT).show();
+                        check = true;
+                        startActivity(navToMain);
+                    }
+                });
+            }
+            if (!check){
+                txtStatus.setText("Wrong username or password!");
+            }
+
+            //startActivity(navToMain);
+        });
 
         btnRegister.setOnClickListener(v -> {
             Fragment registerFragment = new RegisterFragment();
@@ -54,7 +84,10 @@ public class LoginFragment extends Fragment {
         navToMain = new Intent(getActivity(), MainActivity.class);
         btnLogin = binding.btnLog;
         btnRegister = binding.btnRegister;
-
+        edtUser = binding.editLoginUsername;
+        edtPass = binding.editLoginPassword;
+        txtStatus = binding.textLoginStatus;
+        userRepo = new UserRepo();
     }
 
     public void replaceFragment(Fragment fragment) {
