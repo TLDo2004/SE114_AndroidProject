@@ -14,7 +14,7 @@ public class UserModel {
     public String email;
     @SerializedName("pass")
     public String pass;
-    @SerializedName("bio")
+/*    @SerializedName("bio")
     public String bio;
     @SerializedName("avatar")
     public String avatar;
@@ -27,5 +27,5 @@ public class UserModel {
     @SerializedName("quizs")
     public List<QuizModel> quizList;
     @SerializedName("revisions")
-    public List<RevisionModel> revisionList;
+    public List<RevisionModel> revisionList;*/
 }

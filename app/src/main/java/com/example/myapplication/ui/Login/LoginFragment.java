@@ -29,6 +29,7 @@ public class LoginFragment extends Fragment {
     private TextView txtStatus;
     private String user = null, pass = null;
     private UserRepo userRepo;
+    private static boolean check = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,26 +50,26 @@ public class LoginFragment extends Fragment {
 //                replaceFragment(registerFragment);
 //            }
 //        });
+
         btnLogin.setOnClickListener(v -> {
             user = edtUser.getText().toString();
             pass = edtPass.getText().toString();
-            /*if (user.isEmpty() == false) {
+
+            if (!user.isEmpty() && !pass.isEmpty()) {
                 userRepo.getUserByName(user).observe(getViewLifecycleOwner(), usr -> {
-                    if(pass.equals(usr.pass.toString())) {
+                    if(usr != null && pass.equals(usr.pass)) {
                         txtStatus.setText("");
                         Toast.makeText(getContext(), "Login successfully!", Toast.LENGTH_SHORT).show();
+                        check = true;
                         startActivity(navToMain);
-                    }
-                    else {
-                        txtStatus.setText("Wrong username or password!");
                     }
                 });
             }
-            else {
+            if (!check){
                 txtStatus.setText("Wrong username or password!");
             }
-             */
-            startActivity(navToMain);
+
+            //startActivity(navToMain);
         });
 
         btnRegister.setOnClickListener(v -> {
@@ -86,6 +87,7 @@ public class LoginFragment extends Fragment {
         edtUser = binding.editLoginUsername;
         edtPass = binding.editLoginPassword;
         txtStatus = binding.textLoginStatus;
+        userRepo = new UserRepo();
     }
 
     public void replaceFragment(Fragment fragment) {

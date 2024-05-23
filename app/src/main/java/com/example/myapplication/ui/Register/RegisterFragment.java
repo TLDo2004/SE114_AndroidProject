@@ -33,7 +33,7 @@ public class RegisterFragment extends Fragment {
     private EditText userName, email, password, confirmPassword;
     private TextView confirm;
     private UserRepo userRepo;
-    private String u = null, e = null, p = null;
+    private UserModel userModel;
 
     @Nullable
     @Override
@@ -41,14 +41,13 @@ public class RegisterFragment extends Fragment {
         binding = RegisterFragmentBinding.inflate(inflater, container, false);
         init(binding);
 
-        u = userName.getText().toString();
-        e = email.getText().toString();
-        p = password.getText().toString();
-
         btnRegister.setOnClickListener(v -> {
+            userModel.name = userName.getText().toString();
+            userModel.email = email.getText().toString();
+            userModel.pass = password.getText().toString();
             if (password.getText().toString().equals(confirmPassword.getText().toString())) {
                 confirm.setText("");
-                userRepo.createUser(u, e, p).observe(getViewLifecycleOwner(), new Observer<UserModel>() {
+                userRepo.createUser(userModel).observe(getViewLifecycleOwner(), new Observer<UserModel>() {
                     @Override
                     public void onChanged(UserModel userModel) {
                         Log.d("API", "User created: " + userModel.name);
@@ -82,6 +81,7 @@ public class RegisterFragment extends Fragment {
         confirmPassword = binding.editRegisterConfirm;
         confirm = binding.textRegisterConfirm;
         userRepo = new UserRepo();
+        userModel = new UserModel();
     }
 
     public void replaceFragment(Fragment fragment) {

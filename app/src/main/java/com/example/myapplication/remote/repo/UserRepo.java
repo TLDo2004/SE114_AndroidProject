@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.myapplication.remote.client.ApiClient;
+import com.example.myapplication.remote.model.TopicModel;
 import com.example.myapplication.remote.model.UserModel;
 import com.example.myapplication.remote.service.UserService;
 
@@ -20,9 +21,9 @@ public class UserRepo {
     public UserRepo() {
         service = ApiClient.getClient().create(UserService.class);
     }
-    public LiveData<UserModel> createUser(String name, String email, String pass) {
+    public LiveData<UserModel> createUser(UserModel user) {
         MutableLiveData<UserModel> data = new MutableLiveData<>();
-        service.createUser(name, email, pass).enqueue(new Callback<UserModel>() {
+        service.createUser(user).enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (response.isSuccessful()) {data.setValue(response.body());}
@@ -53,7 +54,7 @@ public class UserRepo {
     }
     public LiveData<UserModel> getUserByName(String name) {
         MutableLiveData<UserModel> result = new MutableLiveData<>();
-        service.getUserById(name).enqueue(new Callback<UserModel>() {
+        service.getUserByName(name).enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (response.isSuccessful()) {result.setValue(response.body());}
