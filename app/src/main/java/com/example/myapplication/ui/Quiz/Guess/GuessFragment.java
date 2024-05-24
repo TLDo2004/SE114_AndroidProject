@@ -1,13 +1,18 @@
 package com.example.myapplication.ui.Quiz.Guess;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.app.AlertDialog;
+import android.widget.Toast;
+
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import androidx.annotation.NonNull;
@@ -21,7 +26,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.databinding.GuessFragmentBinding;
 import com.example.myapplication.remote.model.WordModel;
 import com.example.myapplication.remote.repo.QuizRepo;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,10 +46,12 @@ public class GuessFragment extends Fragment {
     private int currentQuizIndex = 0;
     private int correctCounter = 0;
     private String quizType = null;
+    private ImageButton btnPlay;
 
     // Finish dialog
     private TextView txtResTitle, txtResProg, txtCorrect, txtOverall;
     private CircularProgressIndicator indicatorResProg;
+    private MediaPlayer mediaPlayer;
 
 
 
@@ -99,6 +109,7 @@ public class GuessFragment extends Fragment {
         txtOptB = binding.txtOptB;
         txtOptC = binding.txtOptC;
         txtOptD = binding.txtOptD;
+        btnPlay = binding.btnPlay;
     }
 
     private void showNextQuiz() {
@@ -113,7 +124,9 @@ public class GuessFragment extends Fragment {
                 txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
                 break;
             case "sound":
-                txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
+                txtQuizContent.setVisibility(View.GONE);
+                btnPlay.setVisibility(View.VISIBLE);
+                playAudio(quizContent.get(currentQuizIndex).audio);
                 break;
             default:
                 txtQuizContent.setText(quizContent.get(currentQuizIndex).def);
@@ -127,6 +140,10 @@ public class GuessFragment extends Fragment {
 
         handleOpt(opts);
 
+    }
+
+    private void playAudio(String url) {
+     btnPlay.setOnClickListener(v -> {});
     }
 
     private void handleOpt(List<String> opts) {
