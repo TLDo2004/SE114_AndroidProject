@@ -65,10 +65,9 @@ public class LoginFragment extends Fragment {
                     }
                 });
             }
-            if (!check){
+/*            if (!check){
                 txtStatus.setText("Wrong username or password!");
-            }
-
+            }*/
             //startActivity(navToMain);
         });
 
