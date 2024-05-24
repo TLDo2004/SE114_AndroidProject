@@ -2,10 +2,10 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">192.168.155.139</domain>
+        <!--<domain includeSubdomains="true">192.168.0.104</domain>-->
     </domain-config>
 </network-security-config>
 
-
+<!-- FIX THE IP BEFORE BUILDING THE APP -->
 <!-- TCH: 172.16.2.120 -->
 <!-- HOME: 192.168.2.21 -->
